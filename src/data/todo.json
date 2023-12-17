@@ -1,6 +1,6 @@
 [
-      { "id": "id-1", "text": "Learn HTML", "completed": true },
-      { "id": "id-2", "text": "Learn CSS", "completed": true },
-      { "id": "id-3", "text": "Learn JS", "completed": false },
-      { "id": "id-4", "text": "Learn React", "completed": false }
+      { "id": "id-1", "text": "Learning HTML", "completed": true },
+      { "id": "id-2", "text": "Learning CSS", "completed": true },
+      { "id": "id-3", "text": "Learning JS", "completed": false },
+      { "id": "id-4", "text": "Learning React", "completed": false }
 ]
