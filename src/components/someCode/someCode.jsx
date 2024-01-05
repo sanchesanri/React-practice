@@ -65,10 +65,10 @@ export class MyClassComponents extends Component {
                 </label>
                 <br />
                 <label >
-                    <input type="radio"
+                    <input
+                        type="radio"
                         name="experience"
-                        value="middle"
-                        checked={this.state.experience === 'middle'}
+                        value="middle" checked={this.state.experience === 'middle'}
                         onChange={this.handleInputChange} />Middle
                 </label>
                 <br />

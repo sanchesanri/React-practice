@@ -23,7 +23,7 @@ export const LoginForm = () => {
                 </label>
                 <label>
                     Password
-                    <Field type="password" name="password" />
+                    <Field type="password" name="password" autoComplete="false" />
                 </label>
                 <button type="submit">Submit</button>
             </Form>
