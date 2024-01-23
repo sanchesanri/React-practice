@@ -11,11 +11,15 @@ function DropDownList() {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const params = useParams();
+  //1. http://localhost:3000/dropdown
+  //2. http://localhost:3000/dropdown/apple
+  //3.  const backLocationLinkRef = useRef(locationList.state?.from ?? '/dropdown');
+  //4. http://localhost:3000/dropdown/apple/details
+
+  //5. backLocationLinkRef don't change, it still http://localhost:3000/dropdown/apple
 
   const locationList = useLocation();
   const backLocationLinkRef = useRef(locationList.state?.from ?? '/dropdown');
-  console.log(locationList.state?.from);
-  console.log(locationList.state);
 
   const nameFruit = searchParams.get('fruit') ?? '';
 

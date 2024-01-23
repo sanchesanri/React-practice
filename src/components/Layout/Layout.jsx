@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
@@ -37,7 +37,9 @@ const Layout = ({ children }) => {
           </li>
         </ul>
       </header>
-      <main>{children}</main>
+      <main>
+        <Suspense>{children}</Suspense>
+      </main>
     </div>
   );
 };

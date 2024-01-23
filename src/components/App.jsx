@@ -1,21 +1,30 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import ColorPicker from '../pages/ColorPicker';
 import { Counter } from './Counter/Counter';
 import MyClassComponents from '../pages/MyClassComponentsPage';
 import colorPickerOptions from '../data/colorPickerOptions.json';
 import initialTodo from '../data/todo.json';
 import { TodoList } from './TodoList/TodoList';
-import { useState } from 'react';
-import { TodoEditor } from './TodoEditor/TodoEditor';
-import LoginForm from '../pages/LoginForm';
-import Dropdown from '../pages/Dropdown';
-import DropDownList from './Dropdown/DropdownList';
+import { lazy, useState } from 'react';
+import TodoEditor from './TodoEditor/TodoEditor';
 import Layout from './Layout/Layout';
-import DetailsItem from './Dropdown/DetailsItem';
-import ImagesItem from './Dropdown/ImagesItem';
-import VideoExample from './VideoExample';
+
+// import ColorPicker from '../pages/ColorPicker';
+// import LoginForm from '../pages/LoginForm';
+// import Dropdown from '../pages/Dropdown';
+// import DropDownList from './Dropdown/DropdownList';
+// import DetailsItem from './Dropdown/DetailsItem';
+// import ImagesItem from './Dropdown/ImagesItem';
+// import VideoExample from './VideoExample';
+
+const ColorPicker = lazy(() => import('../pages/ColorPicker'));
+const LoginForm = lazy(() => import('../pages/LoginForm'));
+const Dropdown = lazy(() => import('../pages/Dropdown'));
+const DropDownList = lazy(() => import('./Dropdown/DropdownList'));
+const DetailsItem = lazy(() => import('./Dropdown/DetailsItem'));
+const ImagesItem = lazy(() => import('./Dropdown/ImagesItem'));
+const VideoExample = lazy(() => import('./VideoExample'));
 
 const App = () => {
   const [todoList, setTodoList] = useState(initialTodo);
