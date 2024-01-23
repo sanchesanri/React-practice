@@ -1,91 +1,110 @@
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { ColorPicker } from './ColorPicker/ColorPicker';
+import ColorPicker from '../pages/ColorPicker';
 import { Counter } from './Counter/Counter';
-import { Dropdown } from './Dropdown/Dropdown';
-import { MyClassComponents } from './someCode/someCode';
+import MyClassComponents from '../pages/MyClassComponentsPage';
 import colorPickerOptions from '../data/colorPickerOptions.json';
 import initialTodo from '../data/todo.json';
 import { TodoList } from './TodoList/TodoList';
-import { Component } from 'react';
+import { useState } from 'react';
 import { TodoEditor } from './TodoEditor/TodoEditor';
-import { LoginForm } from './LoginForm/LoginForm';
-import { VideoExample } from './VideoExample';
-import { SearchPhotosPixabay } from './SearchPhotos/SearchPhotos';
+import LoginForm from '../pages/LoginForm';
+import Dropdown from '../pages/Dropdown';
+import DropDownList from './Dropdown/DropdownList';
+import Layout from './Layout/Layout';
+import DetailsItem from './Dropdown/DetailsItem';
+import ImagesItem from './Dropdown/ImagesItem';
+import VideoExample from './VideoExample';
 
-class App extends Component {
-  state = {
-    todoList: initialTodo,
-  };
+const App = () => {
+  const [todoList, setTodoList] = useState(initialTodo);
 
-  addTodo = text => {
+  const addTodo = text => {
     const todo = {
       id: uuidv4(),
       text,
       completed: false,
     };
 
-    this.setState(({ todoList }) => ({
-      todoList: [todo, ...todoList],
-    }));
+    setTodoList(prevState => [todo, ...prevState]);
   };
 
-  deleteTodo = todoId => {
-    this.setState(prevState => ({
-      todoList: prevState.todoList.filter(todo => todo.id !== todoId),
-    }));
+  const deleteTodo = todoId => {
+    setTodoList(prevState => prevState.filter(todo => todo.id !== todoId));
   };
 
-  toggleCompleted = todoId => {
-    // this.setState(prevState => ({
-    //   todoList: prevState.todoList.map(todo => {
-    //     if (todo.id === todoId) {
-    //       return {
-    //         ...todo,
-    //         completed: !todo.completed,
-    //       };
-    //     }
-
-    //     return todo;
-    //   }),
-    // }));
-
-    this.setState(({ todoList }) => ({
-      todoList: todoList.map(todo =>
+  const toggleCompleted = todoId => {
+    setTodoList(({ todoList }) =>
+      todoList.map(todo =>
         todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
-      ),
-    }));
+      )
+    );
   };
 
-  formSubmitHandler = data => {
-    console.log(data);
-
+  const formSubmitHandler = data => {
     setTimeout(() => {
       console.log(data);
     }, 1000);
   };
 
-  render() {
-    const { todoList } = this.state;
+  // return (
+  //   <>
+  //     <MyClassComponents onSubmitHandler={formSubmitHandler} />
+  //     <Counter initialValue={10}></Counter>
+  //     <Dropdown />
+  //     <ColorPicker options={colorPickerOptions}></ColorPicker>
+  //     <TodoEditor onSubmitTodo={addTodo} />
+  //     <TodoList
+  // todoList={todoList}
+  // onDeleteTodo={deleteTodo}
+  // onToggleCompleted={toggleCompleted}
+  //     />
+  //     <LoginForm />
+  //     <VideoExample />
+  //     <SearchPhotosPixabay />
+  //   </>
+  // );
 
-    return (
-      <>
-        <MyClassComponents onSubmitHandler={this.formSubmitHandler} />
-        <Counter initialValue={10}></Counter>
-        <Dropdown />
-        <ColorPicker options={colorPickerOptions}></ColorPicker>
-        <TodoEditor onSubmitTodo={this.addTodo} />
-        <TodoList
-          todoList={todoList}
-          onDeleteTodo={this.deleteTodo}
-          onToggleCompleted={this.toggleCompleted}
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<div>This page for OLL elements</div>} />
+        <Route
+          path="/classComponents"
+          element={<MyClassComponents onSubmitHandler={formSubmitHandler} />}
         />
-        <LoginForm />
-        <VideoExample />
-        <SearchPhotosPixabay />
-      </>
-    );
-  }
-}
+        <Route path="/counter" element={<Counter initialValue={10} />} />
+
+        <Route
+          path="/colorPicker"
+          element={<ColorPicker options={colorPickerOptions} />}
+        />
+        <Route path="/dropdown" element={<Dropdown />}></Route>
+        <Route path="/dropdown/:dropDownList/" element={<DropDownList />}>
+          <Route path="details" element={<DetailsItem />} />
+          <Route path="images" element={<ImagesItem />} />
+        </Route>
+        <Route
+          path="/todoEditor"
+          element={<TodoEditor onSubmitTodo={addTodo} />}
+        />
+
+        <Route
+          path="/todoList"
+          element={
+            <TodoList
+              todoList={todoList}
+              onDeleteTodo={deleteTodo}
+              onToggleCompleted={toggleCompleted}
+            />
+          }
+        />
+        <Route path="/loginForm" element={<LoginForm />} />
+        <Route path="/videoSearch" element={<VideoExample />} />
+      </Routes>
+    </Layout>
+  );
+};
 
 export default App;
