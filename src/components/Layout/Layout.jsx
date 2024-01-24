@@ -1,40 +1,40 @@
 import React, { Suspense } from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { StyledLi, StyledNavLink } from './Layout.styled';
 
 const Layout = ({ children }) => {
   return (
     <div>
       <header>
-        <ul>
-          <li>
-            <NavLink to="/">Main</NavLink>
-          </li>
+        <ul style={{ display: 'flex' }}>
+          <StyledLi>
+            <StyledNavLink to="/">Main</StyledNavLink>
+          </StyledLi>
 
-          <li>
-            <NavLink to="/classComponents">Experience</NavLink>
-          </li>
-          <li>
-            <NavLink to="/counter">Counter</NavLink>
-          </li>
-          <li>
-            <NavLink to="/colorPicker">ColorPicker</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dropdown">Dropdown</NavLink>
-          </li>
-          <li>
-            <NavLink to="/todoEditor">TodoEditor</NavLink>
-          </li>
-          <li>
-            <NavLink to="/todoList">TodoList</NavLink>
-          </li>
-          <li>
-            <NavLink to="/loginForm">LoginForm</NavLink>
-          </li>
-          <li>
-            <NavLink to="/videoSearch">VideoExample</NavLink>
-          </li>
+          <StyledLi>
+            <StyledNavLink to="/classComponents">Experience</StyledNavLink>
+          </StyledLi>
+          <StyledLi>
+            <StyledNavLink to="/counter">Counter</StyledNavLink>
+          </StyledLi>
+          <StyledLi>
+            <StyledNavLink to="/colorPicker">ColorPicker</StyledNavLink>
+          </StyledLi>
+          <StyledLi>
+            <StyledNavLink to="/dropdown">Dropdown</StyledNavLink>
+          </StyledLi>
+          <StyledLi>
+            <StyledNavLink to="/todoEditor">TodoEditor</StyledNavLink>
+          </StyledLi>
+          <StyledLi>
+            <StyledNavLink to="/todoList">TodoList</StyledNavLink>
+          </StyledLi>
+          <StyledLi>
+            <StyledNavLink to="/loginForm">LoginForm</StyledNavLink>
+          </StyledLi>
+          <StyledLi>
+            <StyledNavLink to="/videoSearch">VideoExample</StyledNavLink>
+          </StyledLi>
         </ul>
       </header>
       <main>

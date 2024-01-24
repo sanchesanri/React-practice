@@ -1,7 +1,7 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { Counter } from './Counter/Counter';
+import Counter from '../pages/Counter';
 import MyClassComponents from '../pages/MyClassComponentsPage';
 import colorPickerOptions from '../data/colorPickerOptions.json';
 import initialTodo from '../data/todo.json';
@@ -9,14 +9,6 @@ import { TodoList } from './TodoList/TodoList';
 import { lazy, useState } from 'react';
 import TodoEditor from './TodoEditor/TodoEditor';
 import Layout from './Layout/Layout';
-
-// import ColorPicker from '../pages/ColorPicker';
-// import LoginForm from '../pages/LoginForm';
-// import Dropdown from '../pages/Dropdown';
-// import DropDownList from './Dropdown/DropdownList';
-// import DetailsItem from './Dropdown/DetailsItem';
-// import ImagesItem from './Dropdown/ImagesItem';
-// import VideoExample from './VideoExample';
 
 const ColorPicker = lazy(() => import('../pages/ColorPicker'));
 const LoginForm = lazy(() => import('../pages/LoginForm'));
