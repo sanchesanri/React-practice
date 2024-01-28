@@ -6,7 +6,7 @@ import MyClassComponents from '../pages/MyClassComponentsPage';
 import colorPickerOptions from '../data/colorPickerOptions.json';
 import initialTodo from '../data/todo.json';
 import { TodoList } from './TodoList/TodoList';
-import { lazy, useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import TodoEditor from './TodoEditor/TodoEditor';
 import Layout from './Layout/Layout';
 
@@ -17,6 +17,7 @@ const DropDownList = lazy(() => import('./Dropdown/DropdownList'));
 const DetailsItem = lazy(() => import('./Dropdown/DetailsItem'));
 const ImagesItem = lazy(() => import('./Dropdown/ImagesItem'));
 const VideoExample = lazy(() => import('./VideoExample'));
+const AxiosTry = lazy(() => import('../pages/AxiosTry'));
 
 const App = () => {
   const [todoList, setTodoList] = useState(initialTodo);
@@ -69,41 +70,44 @@ const App = () => {
 
   return (
     <Layout>
-      <Routes>
-        <Route path="/" element={<div>This page for OLL elements</div>} />
-        <Route
-          path="/classComponents"
-          element={<MyClassComponents onSubmitHandler={formSubmitHandler} />}
-        />
-        <Route path="/counter" element={<Counter initialValue={10} />} />
+      <Suspense>
+        <Routes>
+          <Route path="/" element={<div>This page for OLL elements</div>} />
+          <Route path="/axiosTry" element={<AxiosTry />} />
+          <Route
+            path="/classComponents"
+            element={<MyClassComponents onSubmitHandler={formSubmitHandler} />}
+          />
+          <Route path="/counter" element={<Counter initialValue={10} />} />
 
-        <Route
-          path="/colorPicker"
-          element={<ColorPicker options={colorPickerOptions} />}
-        />
-        <Route path="/dropdown" element={<Dropdown />}></Route>
-        <Route path="/dropdown/:dropDownList/" element={<DropDownList />}>
-          <Route path="details" element={<DetailsItem />} />
-          <Route path="images" element={<ImagesItem />} />
-        </Route>
-        <Route
-          path="/todoEditor"
-          element={<TodoEditor onSubmitTodo={addTodo} />}
-        />
+          <Route
+            path="/colorPicker"
+            element={<ColorPicker options={colorPickerOptions} />}
+          />
+          <Route path="/dropdown" element={<Dropdown />}></Route>
+          <Route path="/dropdown/:dropDownList/" element={<DropDownList />}>
+            <Route path="details" element={<DetailsItem />} />
+            <Route path="images" element={<ImagesItem />} />
+          </Route>
+          <Route
+            path="/todoEditor"
+            element={<TodoEditor onSubmitTodo={addTodo} />}
+          />
 
-        <Route
-          path="/todoList"
-          element={
-            <TodoList
-              todoList={todoList}
-              onDeleteTodo={deleteTodo}
-              onToggleCompleted={toggleCompleted}
-            />
-          }
-        />
-        <Route path="/loginForm" element={<LoginForm />} />
-        <Route path="/videoSearch" element={<VideoExample />} />
-      </Routes>
+          <Route
+            path="/todoList"
+            element={
+              <TodoList
+                todoList={todoList}
+                onDeleteTodo={deleteTodo}
+                onToggleCompleted={toggleCompleted}
+              />
+            }
+          />
+          <Route path="/loginForm" element={<LoginForm />} />
+          <Route path="/videoSearch" element={<VideoExample />} />
+        </Routes>
+      </Suspense>
     </Layout>
   );
 };

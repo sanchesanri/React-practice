@@ -1,14 +1,18 @@
 import React, { Suspense } from 'react';
 
-import { StyledLi, StyledNavLink } from './Layout.styled';
+import { MainList, StyledLi, StyledNavLink } from './Layout.styled';
 
 const Layout = ({ children }) => {
   return (
     <div>
       <header>
-        <ul style={{ display: 'flex' }}>
+        <MainList>
           <StyledLi>
             <StyledNavLink to="/">Main</StyledNavLink>
+          </StyledLi>
+
+          <StyledLi>
+            <StyledNavLink to="/axiosTry">Axios</StyledNavLink>
           </StyledLi>
 
           <StyledLi>
@@ -35,7 +39,7 @@ const Layout = ({ children }) => {
           <StyledLi>
             <StyledNavLink to="/videoSearch">VideoExample</StyledNavLink>
           </StyledLi>
-        </ul>
+        </MainList>
       </header>
       <main>
         <Suspense>{children}</Suspense>

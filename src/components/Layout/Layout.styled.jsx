@@ -13,6 +13,12 @@ export const StyledNavLink = styled(NavLink)`
   }
 `;
 
+export const MainList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  width: 900 px;
+`;
+
 export const StyledLi = styled.li`
   width: 100px;
   border: 1px solid #3ea1b9;
