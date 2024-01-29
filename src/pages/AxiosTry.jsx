@@ -1,18 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-
-const FIRST_API_URL = '';
-const SECOND_APIURL = '';
-const KEY_FROM_PIXABAY = '33320710-0e89af02cb8a4d27c83fdc5a5';
+import { AxiosGet } from '../servicesApi/api';
+import axios from 'axios';
 
 const AxiosTry = () => {
+  const [resData, setResData] = useState();
+  const [queryStr, setQueryStr] = useState('');
+
   const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    console.log(queryStr);
+    try {
+      const resQuery = AxiosGet(queryStr)
+        .then(res => {
+          setResData(res.data.hits);
+        })
+        .finally(console.log('FINALLY'));
+    } catch (error) {
+      // throw new Error(console.log(error));
+      if (axios.isAxiosError(error)) {
+        console.error(error, 'error');
+        console.error(error.response?.data, 'data');
+      } else if (error instanceof Error) {
+        console.log(error.message);
+      }
+    }
+  }, [queryStr]);
 
   const handleSubmit = e => {
     e.preventDefault();
 
     const value = searchParams.get('sQuery') ?? '';
-    console.log(value);
+    setQueryStr(value);
   };
 
   const handleInput = e => {

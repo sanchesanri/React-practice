@@ -3,13 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 export const StyledNavLink = styled(NavLink)`
   color: red;
-  /* & :hover,
-  :focus {
-    color: red;
-  } */
+
   &.active {
-    color: #2e1f1f;
-    background-color: #945454;
+    color: #1f2064;
+    background-color: inherit;
   }
 `;
 
@@ -25,4 +22,9 @@ export const StyledLi = styled.li`
   border-radius: 3px;
   margin: 2px;
   padding: 5px 10px;
+
+  &:hover {
+    color: #1f2064;
+    background-color: #945454;
+  }
 `;
